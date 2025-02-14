@@ -5,7 +5,8 @@ import { Inter as FontSans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/nav/mobile-nav";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
+// import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { getAllPages } from "@/lib/wordpress";
 import { mainMenu, contentMenu } from "@/menu.config";
 import { Section, Container } from "@/components/craft";
 import { Analytics } from "@vercel/analytics/react";
@@ -24,9 +25,9 @@ const font = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "WordPress & Next.js Starter by 9d8",
+  title: "Akiyaz",
   description:
-    "A starter template for Next.js with WordPress as a headless CMS.",
+    "An Adventure Like No Other",
   metadataBase: new URL(siteConfig.site_domain),
   alternates: {
     canonical: "/",
@@ -44,8 +45,8 @@ export default function RootLayout({
       <body className={cn("min-h-screen font-sans antialiased", font.variable)}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <Nav />
@@ -80,7 +81,7 @@ const Nav = ({ className, children, id }: NavProps) => {
             width={42}
             height={26.44}
           ></Image>
-          <h2 className="text-sm">{siteConfig.site_name}</h2>
+          <h2 className="text-sm">(logo)</h2>
         </Link>
         {children}
         <div className="flex items-center gap-2">
@@ -93,8 +94,9 @@ const Nav = ({ className, children, id }: NavProps) => {
               </Button>
             ))}
           </div>
+
           <Button asChild className="hidden sm:flex">
-            <Link href="https://github.com/9d8dev/next-wp">Get Started</Link>
+            <Link href="https://akiyaz.substack.com/">Join our newsletter</Link>
           </Button>
           <MobileNav />
         </div>
@@ -148,11 +150,11 @@ const Footer = () => {
             ))}
           </div>
         </Container>
-        <Container className="border-t not-prose flex flex-col md:flex-row md:gap-2 gap-6 justify-between md:items-center">
-          <ThemeToggle />
+        <Container className="border-t not-prose flex flex-col md:flex-row md:gap-2 gap-6 justify-end md:items-center">
+          {/* <ThemeToggle /> */}
           <p className="text-muted-foreground">
-            &copy; <a href="https://9d8.dev">9d8</a>. All rights reserved.
-            2025-present.
+            &copy; <a href="https://akiyaz.io">Akiyaz</a>. All rights reserved.
+            2024-{new Date().getFullYear()}.
           </p>
         </Container>
       </Section>
